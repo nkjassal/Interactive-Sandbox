@@ -2,30 +2,26 @@
 
 Servo servo;
 
+/***
+/* servo  0  1  2  3  4  5  6  7  8
+/* weight 12       12       6
+
+/*5 volts, expect 5.75 for sand */
 /* low and high positions for all 9 arduinos, labeled and corresponding to the array index */
-int servo_low[] = {110};
-int servo_high[] = {175, 180};
+int servo_low[] = {145, 145, 0, 145, 0, 0, 155, 0, 0};
+int servo_high[] = {180, 180, 0, 180, 0, 0, 180, 0, 0};
 
-void setup()
-{
-  Serial.begin(9600);
-  
-  servo.attach(9);
-
-
-}
-
-void sweep_servo()
+void sweep_servo(int num)
 {
   Serial.println(servo.read());
   int height = servo.read();
-  while(height > servo_low[0])
+  while(height > servo_low[num])
   {
     height--;
     servo.write(height);
     delay(20);
   }
-  while(height < servo_high[0])
+  while(height < servo_high[num])
   {
     height++;
     servo.write(height);
@@ -33,8 +29,25 @@ void sweep_servo()
   }
 }
 
+void setup()
+{
+  Serial.begin(9600);
+  
+  servo.attach(9);
+  servo.write(50);
+  /*delay(1000);
+  servo.write(140);
+  delay(1000);
+  servo.write(175);*/
+  
+  //sweep_servo();
+
+
+}
+
+
+
 void loop()
 {
-  sweep_servo();
-
+  //sweep_servo(1);
 }
