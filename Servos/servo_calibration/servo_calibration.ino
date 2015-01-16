@@ -8,8 +8,8 @@ Servo servo;
 
 /*5 volts, expect 5.75 for sand */
 /* low and high positions for all 9 arduinos, labeled and corresponding to the array index */
-int servo_low[] = {0, 0, 150, 4, 0, 143, 8, 154, 150};
-int servo_high[] = {0, 0, 177, 25, 0, 170, 25, 177, 177};
+int servo_low[] = {130, 0, 150, 4, 0, 143, 8, 154, 150};
+int servo_high[] = {165, 0, 177, 25, 0, 170, 25, 177, 177};
 
 
 void setup()
@@ -17,7 +17,7 @@ void setup()
   Serial.begin(9600);
   
   servo.attach(9);
-  servo.write(8);
+  servo.write(170);
   /*delay(3000);
   servo.write(10);*/
   //delay(1000);
@@ -31,7 +31,7 @@ void setup()
 
 void loop()
 {
-  sweep_servo(3);
+  sweep_servo(0);
 }
 
 
